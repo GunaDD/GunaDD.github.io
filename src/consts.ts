@@ -19,6 +19,10 @@ export const SOCIALS: Socials = [
     HREF: "https://github.com/GunaDD",
   },
   {
+    NAME: "x",
+    HREF: "https://x.com/Gunadi_18",
+  },
+  {
     NAME: "linkedin",
     HREF: "https://www.linkedin.com/in/gunadigani/",
   },
