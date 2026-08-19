@@ -1,0 +1,37 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { SITE, SOCIALS } from "@consts";
+---
+
+<Layout title={SITE.TITLE} description={SITE.DESCRIPTION}>
+  <h1>{SITE.TITLE}</h1>
+
+  {/* EDIT ME — what you're doing right now, in one sentence. */}
+  <p>
+    I'm studying computer science at the University of Waterloo, where I do
+    theoretical computer science research with Sepehr Assadi.
+  </p>
+
+  {/* EDIT ME — everything before that, as one list. */}
+  <p>
+    In the past, I've enjoyed working on zero-knowledge proof systems at Axiom,
+    where I built an ahead-of-time compiler that made the <a
+      href="https://blog.openvm.dev/2.0">OpenVM</a
+    > virtual machine 7.8x faster, and a diffusion model for <a
+      href="https://arxiv.org/abs/2512.13729">upscaling wind data</a
+    >. Before that I spent a long time on competitive programming — a bronze
+    medal at the <a href="https://stats.ioinformatics.org/people/8328">IOI</a>,
+    third place at <a
+      href="https://uwaterloo.ca/computer-science/news/waterloo-black-advances-2026-icpc-north-america-championships"
+      >ICPC East Central North America</a
+    >, and first at the Indonesian national olympiad.
+  </p>
+
+  {/*
+    Kept on one line on purpose: Astro emits a text node for each newline
+    inside the map, which shows up as a space before every comma.
+  */}
+  <p>
+    Connect with me on {SOCIALS.map((social, i) => (<Fragment>{i > 0 && ", "}<a href={social.HREF}>{social.NAME}</a></Fragment>))}, or at {SITE.EMAIL}!
+  </p>
+</Layout>

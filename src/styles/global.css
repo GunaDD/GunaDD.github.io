@@ -1,0 +1,58 @@
+/* ─────────────────────────────────────────────────────────────
+   The whole design, in one file.
+
+   Deliberately plain CSS — no Tailwind, no build step, no theme
+   system. Browser defaults are left alone wherever they already
+   look right (body margin, paragraph spacing, link underlines),
+   because the point of this design is that almost nothing is
+   overridden.
+   ───────────────────────────────────────────────────────────── */
+
+html {
+  /* Light only. Without this, browsers in dark mode will invert
+     form controls and scrollbars against a page that has no dark
+     palette to match them. */
+  color-scheme: light;
+}
+
+body {
+  font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+  font-size: 1em;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+/* Three columns: an empty gutter, the text, an empty gutter. Both
+   gutters grow, but the left one stops at 4em — so the column sits
+   left of centre on a wide screen and the right side absorbs the
+   slack. */
+#holder {
+  display: flex;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+#left {
+  min-width: 1em;
+  max-width: 4em;
+  flex-grow: 100;
+}
+
+#middle {
+  max-width: 31em;
+}
+
+#right {
+  min-width: 1em;
+  flex-grow: 100;
+}
+
+a {
+  color: #660000;
+}
+
+a:hover {
+  color: #400000;
+}
