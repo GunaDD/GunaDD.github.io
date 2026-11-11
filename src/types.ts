@@ -1,6 +1,8 @@
 export type Site = {
   TITLE: string;
   DESCRIPTION: string;
+  AFFILIATION: string;
+  DISCORD: string;
   EMAIL: string;
 };
 

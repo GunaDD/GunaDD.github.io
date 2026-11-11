@@ -1,58 +1,104 @@
 /* ─────────────────────────────────────────────────────────────
    The whole design, in one file.
 
-   Deliberately plain CSS — no Tailwind, no build step, no theme
-   system. Browser defaults are left alone wherever they already
-   look right (body margin, paragraph spacing, link underlines),
-   because the point of this design is that almost nothing is
-   overridden.
+   One typeface, one size for the small print, one very large
+   statement. The statement is set in a soft grey with the key
+   phrases picked out in ink (<b> and links), so a skim of the
+   black words alone reads as a summary.
    ───────────────────────────────────────────────────────────── */
+
+/* Self-hosted, so the page talks to no third party. Latin subset of
+   the variable font: weight fixed at 500, optical size 12–96, which
+   the browser picks per font-size (font-optical-sizing: auto). */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/bricolage-grotesque-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --bg: #f1f0ec;
+  --ink: #111;
+  /* As light as it can go while still clearing 3:1 against --bg,
+     the WCAG minimum for large text. */
+  --soft: #898882;
+  --hot: #ff4d00;
+}
 
 html {
   /* Light only. Without this, browsers in dark mode will invert
      form controls and scrollbars against a page that has no dark
      palette to match them. */
   color-scheme: light;
+  background: var(--bg);
+  color: var(--ink);
+  font: 500 15px/1.4 "Bricolage Grotesque", system-ui, sans-serif;
 }
 
+/* Header pinned to the top, footer to the bottom, statement between. */
 body {
-  font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
-  font-size: 1em;
-}
-
-h1 {
-  font-size: 2em;
-}
-
-/* Three columns: an empty gutter, the text, an empty gutter. Both
-   gutters grow, but the left one stops at 4em — so the column sits
-   left of centre on a wide screen and the right side absorbs the
-   slack. */
-#holder {
+  box-sizing: border-box;
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: 0;
+  padding: clamp(1.25rem, 3vw, 2.75rem);
   display: flex;
-  margin-top: 25px;
-  margin-bottom: 25px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 3rem;
 }
 
-#left {
-  min-width: 1em;
-  max-width: 4em;
-  flex-grow: 100;
+header,
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
-#middle {
-  max-width: 31em;
+/* The name is the page's h1 for structure, but sits in the header
+   at the same size as everything else small. */
+h1 {
+  margin: 0;
+  font: inherit;
 }
 
-#right {
-  min-width: 1em;
-  flex-grow: 100;
+.statement {
+  max-width: 23em;
+  margin: 0;
+  color: var(--soft);
+  font-size: clamp(1.9rem, 4.1vw, 4.5rem);
+  line-height: 1.07;
+  letter-spacing: -0.035em;
+}
+
+.statement b {
+  color: var(--ink);
+  font-weight: inherit;
 }
 
 a {
-  color: #660000;
+  color: var(--ink);
+  text-decoration-thickness: 0.07em;
+  text-underline-offset: 0.12em;
+  transition: color 0.15s;
 }
 
 a:hover {
-  color: #400000;
+  color: var(--hot);
+}
+
+footer nav {
+  display: flex;
+  gap: 1.25rem;
+}
+
+footer a,
+header a {
+  text-decoration: none;
 }
